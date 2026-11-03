@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Project Tracker">
+	<!-- Logo Project Tracker — design system DESIGN.md: monokrom, pill, squircle 30% -->
+	<rect width="64" height="64" rx="19" fill="#141414"/>
+	<!-- Pending (faint) -->
+	<rect x="14" y="14" width="10" height="18" rx="5" fill="#ADADAD"/>
+	<!-- WIP (canvas-soft) -->
+	<rect x="27" y="14" width="10" height="26" rx="5" fill="#F3F3F3"/>
+	<!-- Selesai (canvas, tertinggi) -->
+	<rect x="40" y="14" width="10" height="34" rx="5" fill="#FFFFFF"/>
+</svg>

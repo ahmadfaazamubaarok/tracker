@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #141414;
+  --ink-soft: #262626;
+  --text-muted: #707070;
+  --text-faint: #adadad;
+  --canvas: #ffffff;
+  --canvas-soft: #f3f3f3;
+  --field: #f0f0f0;
+  --hairline-soft: #f0f0f0;
+  --hairline: #e0e0e0;
+  --accent: #0066ff;
+  --overdue: #A83236;
+}
+
+@layer base {
+  body {
+    @apply bg-canvas text-ink antialiased font-sans;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom hairline borders matching DESIGN.md */
+.border-hairline {
+  border-color: var(--hairline);
+}
+
+.border-hairline-soft {
+  border-color: var(--hairline-soft);
+}
+
+/* Stadium Pill Button styles */
+.btn-pill {
+  @apply inline-flex items-center justify-center font-medium transition-all duration-150 rounded-full px-4 py-2 text-sm select-none;
+}
+
+.btn-primary {
+  @apply bg-ink text-white hover:bg-ink-soft active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-soft {
+  @apply bg-canvas-soft text-ink hover:bg-field active:scale-95 border border-hairline;
+}
+
+.btn-outline {
+  @apply bg-transparent text-ink border border-hairline hover:bg-canvas-soft active:scale-95;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700 active:scale-95;
+}
+
+/* Pill chip tags */
+.chip {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium tracking-tight;
+}
+
+/* Color dot indicator */
+.dot {
+  @apply w-2 h-2 rounded-full inline-block flex-shrink-0;
+}
+
+/* Custom minimalist scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+}
