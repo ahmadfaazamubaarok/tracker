@@ -6,31 +6,22 @@ import {
   FolderKanban, 
   Layers, 
   Archive, 
-  Plus, 
-  Filter, 
   DownloadCloud, 
   Menu, 
   X
 } from 'lucide-react';
 
 interface NavbarProps {
-  onOpenAddProgress: () => void;
-  onOpenFilter: () => void;
   onOpenBackup: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  onOpenAddProgress,
-  onOpenFilter,
   onOpenBackup,
 }) => {
-  const { currentTab, setCurrentTab, groups, projects, progresses, filter } = useTrackerStore();
+  const { currentTab, setCurrentTab, groups, projects, progresses } = useTrackerStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const archivedCount = progresses.filter((p) => p.archived).length;
-  const isFiltered = Boolean(filter.id_group || filter.id_project);
-
-  const canAddProgress = groups.length > 0 && projects.length > 0;
 
   const handleTabClick = (tab: ViewTab) => {
     setCurrentTab(tab);
@@ -118,24 +109,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Action buttons */}
           <div className="flex items-center space-x-2">
-            {/* Filter Button (Board only) */}
-            {currentTab === 'board' && canAddProgress && (
-              <button
-                onClick={onOpenFilter}
-                className={`relative p-2 rounded-full border transition-colors ${
-                  isFiltered
-                    ? 'border-accent bg-accent/10 text-accent'
-                    : 'border-hairline text-muted hover:text-ink hover:bg-canvas-soft'
-                }`}
-                title="Filter Board"
-              >
-                <Filter className="w-4 h-4" />
-                {isFiltered && (
-                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-accent rounded-full ring-2 ring-canvas" />
-                )}
-              </button>
-            )}
-
             {/* Backup / Export-Import */}
             <button
               onClick={onOpenBackup}
@@ -144,20 +117,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <DownloadCloud className="w-4 h-4" />
             </button>
-
-            {/* Add Progress Button */}
-            {currentTab === 'board' && (
-              <button
-                onClick={onOpenAddProgress}
-                disabled={!canAddProgress}
-                className="btn-pill btn-primary text-xs sm:text-sm py-1.5 px-3.5 space-x-1.5"
-                title={!canAddProgress ? 'Perlu membuat grup & proyek terlebih dahulu' : 'Tambah progres baru'}
-              >
-                <Plus className="w-4 h-4" />
-                <span className="hidden sm:inline">Tambah Progres</span>
-                <span className="sm:hidden">Progres</span>
-              </button>
-            )}
 
             {/* Mobile menu toggle */}
             <button

@@ -7,12 +7,14 @@ import { FolderPlus, Layers, Plus, Filter, RotateCcw } from 'lucide-react';
 
 interface BoardProps {
   onOpenAddProgress: () => void;
+  onOpenFilter: () => void;
   onOpenDetail: (card: CardItem) => void;
   onDeleteProgress: (cardId: number) => void;
 }
 
 export const Board: React.FC<BoardProps> = ({
   onOpenAddProgress,
+  onOpenFilter,
   onOpenDetail,
   onDeleteProgress,
 }) => {
@@ -95,8 +97,43 @@ export const Board: React.FC<BoardProps> = ({
     ? projects.find((p) => p.id === filter.id_project)?.name
     : null;
 
+  const isFiltered = Boolean(filter.id_group || filter.id_project);
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Top Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-hairline mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-ink tracking-tight">Board</h1>
+          <p className="text-xs sm:text-sm text-muted mt-1">
+            Pantau dan kelola progres proyek melalui kanban board 3 kolom.
+          </p>
+        </div>
+        <div className="flex items-center space-x-2 self-start sm:self-auto">
+          <button
+            onClick={onOpenFilter}
+            className={`relative p-2.5 rounded-full border transition-colors ${
+              isFiltered
+                ? 'border-accent bg-accent/10 text-accent'
+                : 'border-hairline text-muted hover:text-ink hover:bg-canvas-soft'
+            }`}
+            title="Filter Board"
+          >
+            <Filter className="w-4 h-4" />
+            {isFiltered && (
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-accent rounded-full ring-2 ring-canvas" />
+            )}
+          </button>
+          <button
+            onClick={onOpenAddProgress}
+            className="btn-pill btn-primary text-sm space-x-1.5"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Tambah Progres</span>
+          </button>
+        </div>
+      </div>
+
       {/* Active Filter Notification Banner */}
       {(activeGroupName || activeProjectName) && (
         <div className="mb-6 p-3.5 rounded-2xl bg-canvas-soft border border-hairline flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">

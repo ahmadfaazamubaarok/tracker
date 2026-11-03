@@ -62,8 +62,6 @@ export function App() {
     <div className="min-h-screen bg-canvas flex flex-col selection:bg-ink selection:text-white pb-20 md:pb-6">
       {/* Top Navbar */}
       <Navbar
-        onOpenAddProgress={() => setIsAddProgressOpen(true)}
-        onOpenFilter={() => setIsFilterModalOpen(true)}
         onOpenBackup={() => setIsBackupModalOpen(true)}
       />
 
@@ -72,6 +70,7 @@ export function App() {
         {currentTab === 'board' && (
           <Board
             onOpenAddProgress={() => setIsAddProgressOpen(true)}
+            onOpenFilter={() => setIsFilterModalOpen(true)}
             onOpenDetail={(card) => setDetailCard(card)}
             onDeleteProgress={(cardId) => {
               if (window.confirm('Yakin ingin menghapus progres ini?')) {
