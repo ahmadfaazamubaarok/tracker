@@ -1,6 +1,7 @@
 {
   "name": "project-tracker",
   "version": "1.0.0",
+  "author": "Ahmad Faaza Mubaarok <ahmadfaazamubaarok@gmail.com>",
   "private": true,
   "description": "Cross-platform standalone Kanban Project Tracker for Desktop & Mobile",
   "main": "dist-electron/main.js",

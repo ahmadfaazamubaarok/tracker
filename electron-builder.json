@@ -10,6 +10,7 @@
   ],
   "linux": {
     "target": ["AppImage", "deb"],
+    "maintainer": "Ahmad Faaza Mubaarok <ahmadfaazamubaarok@gmail.com>",
     "category": "Office",
     "icon": "public/assets/icon-512.png"
   },
